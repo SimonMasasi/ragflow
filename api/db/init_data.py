@@ -165,8 +165,10 @@ def init_web_data():
     start_time = time.time()
 
     init_llm_factory()
-    # if not UserService.get_all().count():
-    #    init_superuser()
+    try:
+        init_superuser()
+    except Exception:
+        logging.exception("Init superuser error: ")
 
     add_graph_templates()
     logging.info("init web data success:{}".format(time.time() - start_time))
