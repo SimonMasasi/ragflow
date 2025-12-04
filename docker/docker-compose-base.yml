@@ -124,7 +124,10 @@ services:
   sandbox-executor-manager:
     profiles:
       - sandbox
-    image: ${SANDBOX_EXECUTOR_MANAGER_IMAGE-infiniflow/sandbox-executor-manager:latest}
+    build:
+      context: ../sandbox/executor_manager
+      dockerfile: Dockerfile
+    image: sandbox-executor-manager:latest
     privileged: true
     ports:
       - ${SANDBOX_EXECUTOR_MANAGER_PORT-9385}:9385
